@@ -21,7 +21,7 @@ dependencies {
   compile "io.vertx:vertx-web:$vertxVersion"
   compile "io.vertx:vertx-web-templ-freemarker:$vertxVersion"
   compile "com.github.rjeschke:txtmark:0.13"
-  compile "io.vertx:ertx-jdbc-client:$vertxVersion"
+  compile "io.vertx:vertx-jdbc-client:$vertxVersion"
   compile "org.hsqldb:hsqldb:2.3.4"
 
   testCompile "junit:junit:4.12"
