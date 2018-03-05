@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/VertxWiki.iml" filepath="$PROJECT_DIR$/VertxWiki.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/VertxWiki_main.iml" filepath="$PROJECT_DIR$/.idea/modules/VertxWiki_main.iml" group="VertxWiki" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/VertxWiki_test.iml" filepath="$PROJECT_DIR$/.idea/modules/VertxWiki_test.iml" group="VertxWiki" />
+    </modules>
+  </component>
+</project>
