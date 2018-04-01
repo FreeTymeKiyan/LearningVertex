@@ -1,8 +1,9 @@
-package io.vertx.starter;
+package io.vertx.guides.wiki;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.DeploymentOptions;
 import io.vertx.core.Future;
+import io.vertx.guides.wiki.database.WikiDatabaseVerticle;
 
 public class MainVerticle extends AbstractVerticle {
 
@@ -14,7 +15,7 @@ public class MainVerticle extends AbstractVerticle {
 
     dbVerticleDeployment.compose(id -> { // Sequential composition.
       Future<String> httpVerticleDeployment = Future.future();
-      vertx.deployVerticle("io.vertx.starter.HttpServerVerticle", // A class name as a string to specify a verticle.
+      vertx.deployVerticle("HttpServerVerticle", // A class name as a string to specify a verticle.
         new DeploymentOptions().setInstances(2), // Multiple verticles can share the same TCP ports.
         httpVerticleDeployment.completer());
       return httpVerticleDeployment;

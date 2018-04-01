@@ -12,7 +12,7 @@ sourceCompatibility = '1.8'
 mainClassName = 'io.vertx.core.Launcher'
 
 def vertxVersion = '3.5.1'
-def mainVerticleName = 'io.vertx.starter.MainVerticle'
+def mainVerticleName = 'io.vertx.guides.wiki.MainVerticle'
 def watchForChange = 'src/**/*'
 def doOnChange = './gradlew classes'
 
@@ -20,9 +20,12 @@ dependencies {
   compile "io.vertx:vertx-core:$vertxVersion"
   compile "io.vertx:vertx-web:$vertxVersion"
   compile "io.vertx:vertx-web-templ-freemarker:$vertxVersion"
+  compile "io.vertx:vertx-service-proxy:$vertxVersion"
   compile "com.github.rjeschke:txtmark:0.13"
   compile "io.vertx:vertx-jdbc-client:$vertxVersion"
   compile "org.hsqldb:hsqldb:2.3.4"
+
+  compileOnly "io.vertx:vertx-codegen:$vertxVersion"
 
   testCompile "junit:junit:4.12"
   testCompile "io.vertx:vertx-unit:$vertxVersion"
@@ -44,4 +47,30 @@ run {
 
 task wrapper(type: Wrapper) {
   gradleVersion = '4.5.1'
+}
+
+task annotationProcessing(type: JavaCompile, group: 'build') {
+  source = sourceSets.main.java
+  classpath = configurations.compile + configurations.compileOnly
+  destinationDir = project.file('src/main/generated')
+  options.compilerArgs = [
+    "-proc:only",
+    "-processor", "io.vertx.codegen.CodeGenProcessor",
+    "-AoutputDirectory=${project.projectDir}/src/main"
+  ]
+}
+
+compileJava {
+  targetCompatibility = 1.8
+  sourceCompatibility = 1.8
+
+  dependsOn annotationProcessing
+}
+
+sourceSets {
+  main {
+    java {
+      srcDirs += 'src/main/generated'
+    }
+  }
 }
